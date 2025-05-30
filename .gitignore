@@ -28,3 +28,6 @@ dist-ssr
 
 # Documentation
 /mdx
+
+# Github Coplilot Instructions
+/.github/instructions/*
