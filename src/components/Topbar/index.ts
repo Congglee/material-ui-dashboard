@@ -1,3 +1,3 @@
-import Topbar from '~/components/Topbar/Topbar'
+import TopBar from '~/components/TopBar/TopBar'
 
-export default Topbar
+export default TopBar
