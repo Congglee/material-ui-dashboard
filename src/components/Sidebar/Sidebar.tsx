@@ -21,7 +21,7 @@ import Stack from '@mui/material/Stack'
 import SvgIcon from '@mui/material/SvgIcon'
 import Typography from '@mui/material/Typography'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import MaterialUI_Icon from '~/assets/material-ui.svg?react'
 import Drawer from '~/components/Drawer'
 import DrawerHeader from '~/components/Drawer/DrawerHeader'
@@ -41,15 +41,22 @@ interface SidebarProps {
 
 export default function Sidebar({ open, onClose }: SidebarProps) {
   const theme = useTheme()
-  const isDarkMode = theme.palette.mode === 'dark'
+  const location = useLocation()
 
   const [nestedMenuListOpen, setNestedMenuListOpen] = useState(false)
 
   const [anchorMenuEl, setAnchorMenuEl] = useState<null | HTMLElement>(null)
-
   const isMenuOpen = Boolean(anchorMenuEl)
 
-  const toggleEmployeesMenu = (event: React.MouseEvent<HTMLDivElement>) => {
+  const isPathActive = (pathname: string) => {
+    return location.pathname === pathname
+  }
+
+  const isDashboardActive = () => {
+    return location.pathname === path.dashboard || location.pathname === '/'
+  }
+
+  const toggleEmployeesMenu = (event: React.MouseEvent<HTMLElement>) => {
     if (isMenuOpen) {
       setAnchorMenuEl(null)
       setNestedMenuListOpen(false)
@@ -104,8 +111,24 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
           <ListItem disablePadding sx={{ display: 'block' }}>
             <Tooltip title={open ? '' : 'Dashboard'} placement='right'>
               <ListItemButton
+                component={Link}
+                to={path.dashboard}
+                selected={isDashboardActive()}
                 sx={[
-                  { minHeight: 48, px: 2.5 },
+                  {
+                    minHeight: 48,
+                    px: 2.5,
+                    '&.Mui-selected': {
+                      backgroundColor: 'primary.main',
+                      color: 'primary.contrastText',
+                      '&:hover': {
+                        backgroundColor: 'primary.dark'
+                      },
+                      '& .MuiListItemIcon-root': {
+                        color: 'primary.contrastText'
+                      }
+                    }
+                  },
                   open
                     ? {
                         justifyContent: 'initial'
@@ -122,7 +145,6 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
               </ListItemButton>
             </Tooltip>
           </ListItem>
-
           {open ? (
             <Typography
               variant='subtitle1'
@@ -140,12 +162,27 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
               </IconButton>
             </Tooltip>
           )}
-
           <ListItem disablePadding sx={{ display: 'block' }}>
             <Tooltip title={open ? '' : 'Orders'} placement='right'>
               <ListItemButton
+                component={Link}
+                to={path.orders}
+                selected={isPathActive(path.orders)}
                 sx={[
-                  { minHeight: 48, px: 2.5 },
+                  {
+                    minHeight: 48,
+                    px: 2.5,
+                    '&.Mui-selected': {
+                      backgroundColor: 'primary.main',
+                      color: 'primary.contrastText',
+                      '&:hover': {
+                        backgroundColor: 'primary.dark'
+                      },
+                      '& .MuiListItemIcon-root': {
+                        color: 'primary.contrastText'
+                      }
+                    }
+                  },
                   open
                     ? {
                         justifyContent: 'initial'
@@ -162,7 +199,6 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
               </ListItemButton>
             </Tooltip>
           </ListItem>
-
           <ListItem disablePadding sx={{ display: 'block' }}>
             <Tooltip title={open ? '' : 'Employees'} placement='right'>
               <ListItemButton
@@ -211,21 +247,68 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
                 Employees
               </MenuItem>
               <Divider />
-              <MenuItem sx={{ fontSize: '0.875rem' }}>All Employees</MenuItem>
-              <MenuItem sx={{ fontSize: '0.875rem' }}>New Employee</MenuItem>
+              <MenuItem
+                component={Link}
+                to={path.employees}
+                onClick={toggleEmployeesMenu}
+                sx={{ fontSize: '0.875rem' }}
+              >
+                All Employees
+              </MenuItem>
+              <MenuItem
+                component={Link}
+                to={path.newEmployee}
+                onClick={toggleEmployeesMenu}
+                sx={{ fontSize: '0.875rem' }}
+              >
+                New Employee
+              </MenuItem>
             </Menu>
           </ListItem>
-
           {open && (
             <Collapse in={nestedMenuListOpen} timeout='auto' unmountOnExit>
               <List component='div' disablePadding>
-                <ListItemButton sx={{ pl: 4 }}>
+                <ListItemButton
+                  component={Link}
+                  to={path.employees}
+                  selected={isPathActive(path.employees)}
+                  sx={{
+                    pl: 4,
+                    '&.Mui-selected': {
+                      backgroundColor: 'primary.main',
+                      color: 'primary.contrastText',
+                      '&:hover': {
+                        backgroundColor: 'primary.dark'
+                      },
+                      '& .MuiListItemIcon-root': {
+                        color: 'primary.contrastText'
+                      }
+                    }
+                  }}
+                >
                   <ListItemIcon sx={[{ minWidth: 0, justifyContent: 'center' }, open ? { mr: 3 } : { mr: 'auto' }]}>
                     <PeopleAltIcon />
                   </ListItemIcon>
                   <ListItemText primary='All Employees' />
                 </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
+                <ListItemButton
+                  component={Link}
+                  to={path.newEmployee}
+                  selected={isPathActive(path.newEmployee)}
+                  sx={{
+                    pl: 4,
+                    '&.Mui-selected': {
+                      backgroundColor: 'primary.main',
+                      color: 'primary.contrastText',
+                      '&:hover': {
+                        backgroundColor: 'primary.dark'
+                      },
+                      '& .MuiListItemIcon-root': {
+                        color: 'primary.contrastText'
+                      }
+                    }
+                  }}
+                >
                   <ListItemIcon sx={[{ minWidth: 0, justifyContent: 'center' }, open ? { mr: 3 } : { mr: 'auto' }]}>
                     <PersonAddIcon />
                   </ListItemIcon>
@@ -234,7 +317,6 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
               </List>
             </Collapse>
           )}
-
           {open ? (
             <Typography
               variant='subtitle1'
@@ -252,12 +334,27 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
               </IconButton>
             </Tooltip>
           )}
-
           <ListItem disablePadding sx={{ display: 'block' }}>
             <Tooltip title={open ? '' : 'Account'} placement='right'>
               <ListItemButton
+                component={Link}
+                to={path.account}
+                selected={isPathActive(path.account)}
                 sx={[
-                  { minHeight: 48, px: 2.5 },
+                  {
+                    minHeight: 48,
+                    px: 2.5,
+                    '&.Mui-selected': {
+                      backgroundColor: 'primary.main',
+                      color: 'primary.contrastText',
+                      '&:hover': {
+                        backgroundColor: 'primary.dark'
+                      },
+                      '& .MuiListItemIcon-root': {
+                        color: 'primary.contrastText'
+                      }
+                    }
+                  },
                   open
                     ? {
                         justifyContent: 'initial'
@@ -281,7 +378,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
         <Divider />
 
         <Stack p={open ? 2 : 1} alignItems='center' justifyContent='center'>
-          <Tooltip title='Sign Out' placement='right'>
+          <Tooltip title={open ? '' : 'Sign Out'} placement='right'>
             <Button
               variant='outlined'
               fullWidth

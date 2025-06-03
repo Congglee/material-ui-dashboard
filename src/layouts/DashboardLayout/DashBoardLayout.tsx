@@ -1,44 +1,24 @@
-import MenuIcon from '@mui/icons-material/Menu'
 import Box from '@mui/material/Box'
-import IconButton from '@mui/material/IconButton'
-import Stack from '@mui/material/Stack'
-import Toolbar from '@mui/material/Toolbar'
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
-import AppBar from '~/components/AppBar'
 import Sidebar from '~/components/Sidebar'
+import TopBar from '~/components/TopBar'
 
 export default function DashBoardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
 
-  const handleSidebarOpen = () => {
+  const onSidebarOpen = () => {
     setSidebarOpen(true)
   }
 
-  const handleSidebarClose = () => {
+  const onSidebarClose = () => {
     setSidebarOpen(false)
   }
 
   return (
     <Box display='flex'>
-      <AppBar position='fixed' open={sidebarOpen}>
-        <Toolbar>
-          <Stack width='100%' flexDirection='row' alignItems='center' justifyContent='space-between' flexWrap='wrap'>
-            <Stack flexDirection='row' alignItems='center'>
-              <IconButton
-                color='inherit'
-                aria-label='open sidebar'
-                onClick={handleSidebarOpen}
-                edge='start'
-                sx={{ ...(sidebarOpen && { display: 'none' }) }}
-              >
-                <MenuIcon />
-              </IconButton>
-            </Stack>
-          </Stack>
-        </Toolbar>
-      </AppBar>
-      <Sidebar open={sidebarOpen} onClose={handleSidebarClose} />
+      <Sidebar open={sidebarOpen} onClose={onSidebarClose} />
+      <TopBar sidebarOpen={sidebarOpen} onSidebarOpen={onSidebarOpen} />
       <Outlet />
     </Box>
   )

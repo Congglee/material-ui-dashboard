@@ -1,4 +1,7 @@
 export const path = {
   dashboard: '/dashboard',
-  team: '/team'
+  orders: '/orders',
+  employees: '/employees',
+  newEmployee: '/employees/new',
+  account: '/account'
 }

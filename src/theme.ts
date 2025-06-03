@@ -52,7 +52,7 @@ const theme = extendTheme({
       styleOverrides: {
         root: ({ theme }) =>
           theme.unstable_sx({
-            backgroundColor: theme.palette.mode === 'dark' ? '' : '#ffffff',
+            backgroundColor: theme.palette.mode === 'dark' ? '#0c1017 !important' : '#f5f6fa !important',
             color: theme.palette.mode === 'dark' ? '#ffffff' : '#000000',
             boxShadow: 'none'
           })
