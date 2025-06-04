@@ -11,10 +11,11 @@ export default function DataGrid({ sx, ...props }: DataGridProps) {
         }}
         sx={{
           ...sx,
-          borderColor: (theme) => (theme.palette.mode === 'dark' ? theme.palette.grey[700] : theme.palette.grey[200]),
+          borderColor: (theme) => (theme.palette.mode === 'dark' ? '#333c4d' : '#dadee7'),
           '& .MuiDataGrid-cell': {
-            borderColor: (theme) => (theme.palette.mode === 'dark' ? theme.palette.grey[700] : theme.palette.grey[200])
-          }
+            borderColor: (theme) => (theme.palette.mode === 'dark' ? '#333c4d' : '#dadee7')
+          },
+          borderRadius: 2
         }}
         pageSizeOptions={[10, 20, 50]}
         disableColumnResize
