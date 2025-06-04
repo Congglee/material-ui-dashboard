@@ -6,7 +6,7 @@ export const DRAWER_WIDTH = 320
 const theme = extendTheme({
   colorSchemeSelector: 'class',
   typography: {
-    fontFamily: 'Source Sans 3, sans-serif'
+    fontFamily: 'Inter, sans-serif'
   },
   colorSchemes: {
     light: {

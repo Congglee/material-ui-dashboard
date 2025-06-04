@@ -378,7 +378,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
         <Divider />
 
         <Stack p={open ? 2 : 1} alignItems='center' justifyContent='center'>
-          <Tooltip title={open ? '' : 'Sign Out'} placement='right'>
+          <Tooltip title={open ? '' : 'Sign Out'}>
             <Button
               variant='outlined'
               fullWidth
