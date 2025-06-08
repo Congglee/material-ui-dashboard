@@ -3,7 +3,6 @@ import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
 import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
 import AppBar from '~/components/AppBar'
 import ModeSelect from '~/components/TopBar/ModeSelect'
 import Profiles from '~/components/TopBar/Profiles'

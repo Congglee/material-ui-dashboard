@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import PageHeader from '~/components/PageHeader'
 import DataGrid from '~/components/DataGrid'
+import NewEmployeeDialog from '~/components/Dialog/NewEmployeeDialog'
 import columns from '~/pages/Employees/EmployeesList/components/Columns'
 import rows from '~/pages/Employees/EmployeesList/components/Rows'
 import Box from '@mui/material/Box'
@@ -15,6 +17,16 @@ const breadcrumbs = [
 ]
 
 export default function EmployeesList() {
+  const [newEmployeeDialogOpen, setNewEmployeeDialogOpen] = useState(false)
+
+  const handleNewEmployeeDialogOpen = () => {
+    setNewEmployeeDialogOpen(true)
+  }
+
+  const handleNewEmployeeDialogClose = () => {
+    setNewEmployeeDialogOpen(false)
+  }
+
   return (
     <>
       <PageHeader heading='Employees' breadcrumbs={breadcrumbs} />
@@ -37,6 +49,7 @@ export default function EmployeesList() {
               variant='contained'
               size='medium'
               color='primary'
+              onClick={handleNewEmployeeDialogOpen}
               sx={{
                 gap: 1,
                 borderRadius: 2,
@@ -53,6 +66,8 @@ export default function EmployeesList() {
           <DataGrid columns={columns} rows={rows} />
         </Stack>
       </Box>
+
+      <NewEmployeeDialog open={newEmployeeDialogOpen} onClose={handleNewEmployeeDialogClose} />
     </>
   )
 }

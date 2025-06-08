@@ -24,7 +24,6 @@ const renderActions = (params: GridCellParams) => {
           }
         }}
         onClick={() => {
-          // Handle edit action
           console.log('Edit employee:', params.row)
         }}
       >
@@ -39,7 +38,6 @@ const renderActions = (params: GridCellParams) => {
           }
         }}
         onClick={() => {
-          // Handle delete action
           console.log('Delete employee:', params.row)
         }}
       >
