@@ -82,3 +82,9 @@ export const mockUserByCountry = [
   { label: 'Brazil', value: 10000 },
   { label: 'Other', value: 5000 }
 ]
+
+export const mockUserData = {
+  name: 'John Doe',
+  email: 'john.doe@example.com',
+  avatar: 'https://i.pravatar.cc/150?img=1'
+}

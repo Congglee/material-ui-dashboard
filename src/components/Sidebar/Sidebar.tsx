@@ -75,7 +75,15 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
   }
 
   return (
-    <Drawer variant='permanent' open={open}>
+    <Drawer
+      variant='permanent'
+      open={open}
+      sx={{
+        '& .MuiPaper-root': {
+          borderRightColor: (theme) => (theme.palette.mode === 'dark' ? 'primary.dark' : '#e1bee7')
+        }
+      }}
+    >
       <DrawerHeader sx={{ justifyContent: 'space-between' }}>
         <Link to={path.dashboard}>
           <Stack flexDirection='row' alignItems='center' p={1}>
@@ -104,7 +112,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
         </IconButton>
       </DrawerHeader>
 
-      <Divider />
+      <Divider sx={{ borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primary.dark' : '#e1bee7') }} />
 
       <Box component='nav' sx={{ overflowX: 'hidden', overflowY: 'auto', height: '100%' }}>
         <List>

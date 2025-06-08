@@ -1,4 +1,4 @@
-import { purple, deepPurple, grey } from '@mui/material/colors'
+import { purple, deepPurple } from '@mui/material/colors'
 import { extendTheme } from '@mui/material/styles'
 
 export const DRAWER_WIDTH = 320
