@@ -11,9 +11,11 @@ export default function DataGrid({ sx, ...props }: DataGridProps) {
         }}
         sx={{
           ...sx,
-          borderColor: (theme) => (theme.palette.mode === 'dark' ? '#333c4d' : '#dadee7'),
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.light,
           '& .MuiDataGrid-cell': {
-            borderColor: (theme) => (theme.palette.mode === 'dark' ? '#333c4d' : '#dadee7')
+            borderColor: (theme) =>
+              theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.light
           },
           borderRadius: 2
         }}

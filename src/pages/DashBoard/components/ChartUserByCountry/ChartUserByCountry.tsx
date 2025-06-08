@@ -4,34 +4,42 @@ import CardContent from '@mui/material/CardContent'
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
+import { useTheme } from '@mui/material/styles'
 import { PieChart } from '@mui/x-charts/PieChart'
 import { BrazilFlag, GlobeFlag, USAFlag } from '~/components/Icons/Icons'
 import { mockUserByCountry } from '~/constants/mock-data'
 import PieCenterLabel from '~/pages/DashBoard/components/ChartUserByCountry/PieCenterLabel'
 
-const countries = [
-  {
-    name: 'USA',
-    value: 70,
-    flag: <USAFlag />,
-    color: 'hsl(220, 25%, 45%)'
-  },
-  {
-    name: 'Brazil',
-    value: 20,
-    flag: <BrazilFlag />,
-    color: 'hsl(220, 25%, 30%)'
-  },
-  {
-    name: 'Other',
-    value: 10,
-    flag: <GlobeFlag />,
-    color: 'hsl(220, 25%, 20%)'
-  }
-]
-
 export default function ChartUserByCountry() {
-  const colors = ['hsl(220, 20%, 65%)', 'hsl(220, 20%, 42%)', 'hsl(220, 20%, 35%)', 'hsl(220, 20%, 25%)']
+  const theme = useTheme()
+
+  const countries = [
+    {
+      name: 'USA',
+      value: 70,
+      flag: <USAFlag />,
+      color: theme.palette.primary.main
+    },
+    {
+      name: 'Brazil',
+      value: 20,
+      flag: <BrazilFlag />,
+      color: theme.palette.primary.dark
+    },
+    {
+      name: 'Other',
+      value: 10,
+      flag: <GlobeFlag />,
+      color: theme.palette.secondary.main
+    }
+  ]
+
+  const colors = [
+    theme.palette.primary.light,
+    theme.palette.primary.main,
+    theme.palette.primary.dark,
+    theme.palette.secondary.main
+  ]
 
   return (
     <Card variant='outlined' sx={{ display: 'flex', flexDirection: 'column', gap: '8px', flexGrow: 1 }}>

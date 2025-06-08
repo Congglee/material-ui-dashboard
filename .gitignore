@@ -31,3 +31,6 @@ dist-ssr
 
 # Github Coplilot Instructions
 /.github/instructions/*
+
+# Cursor
+/.cursor

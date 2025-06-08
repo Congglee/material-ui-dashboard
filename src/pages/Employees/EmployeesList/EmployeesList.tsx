@@ -27,7 +27,8 @@ export default function EmployeesList() {
                 height: '2.5rem',
                 borderRadius: 2,
                 border: '1px solid',
-                borderColor: (theme) => (theme.palette.mode === 'dark' ? '#333c4d' : '#dadee7')
+                borderColor: (theme) =>
+                  theme.palette.mode === 'dark' ? theme.palette.primary.dark : theme.palette.primary.light
               }}
             >
               <ReplayIcon />
@@ -39,9 +40,9 @@ export default function EmployeesList() {
               sx={{
                 gap: 1,
                 borderRadius: 2,
-                bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#f5f6fa' : '#05070a'),
+                bgcolor: 'primary.main',
                 '&:hover': {
-                  bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#c2c9d6' : '#333c4d')
+                  bgcolor: 'primary.dark'
                 }
               }}
             >

@@ -13,7 +13,7 @@ export default function PageHeader({ heading, breadcrumbs = [] }: PageHeaderProp
     <Stack m={0}>
       <Breadcrumbs aria-label='breadcrumb'>
         {breadcrumbs.map((breadcrumb) => (
-          <MuiLink color='#94a0b8' underline='hover' fontWeight={500} fontSize={16} href={breadcrumb.href}>
+          <MuiLink color='text.secondary' underline='hover' fontWeight={500} fontSize={16} href={breadcrumb.href}>
             {breadcrumb.name}
           </MuiLink>
         ))}

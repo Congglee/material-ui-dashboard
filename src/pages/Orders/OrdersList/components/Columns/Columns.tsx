@@ -1,5 +1,6 @@
 import type { GridCellParams, GridColDef } from '@mui/x-data-grid'
 import Chip from '@mui/material/Chip'
+import { useTheme } from '@mui/material/styles'
 import { SparkLineChart } from '@mui/x-charts/SparkLineChart'
 import { getDaysInMonth } from '~/utils/dates'
 
@@ -16,6 +17,7 @@ const renderStatus = (status: 'In Stock' | 'Out of Stock' | 'Low Stock') => {
 }
 
 const renderSparklineCell = (params: GridCellParams<SparkLineData, any>) => {
+  const theme = useTheme()
   const data = getDaysInMonth(4, 2024)
   const { value, colDef } = params
 
@@ -32,7 +34,7 @@ const renderSparklineCell = (params: GridCellParams<SparkLineData, any>) => {
         plotType='bar'
         showHighlight
         showTooltip
-        color='hsl(210, 98%, 42%)'
+        color={theme.palette.primary.main}
         xAxis={{ scaleType: 'band', data }}
       />
     </div>
